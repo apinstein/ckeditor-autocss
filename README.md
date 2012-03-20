@@ -1,5 +1,7 @@
-The "autocss" plugin will copy all css from the host page into the editor via editor.config.contentsCSS.
+The "autocss" plugin makes ckeditor a truly WYSIWYG even in complex css environments.
 
-This is great for making ckeditor truly WYSIWYG for complex css environments.
+It does this by doing two things:
+# Copies all css from the host page into the editor via editor.config.contentsCSS.
+# Samples the background-color in effect at the parent of the host <textarea> control and applies that color to the editor so that you get appropriate background color for even better WYSIWYG.
 
-Plugin has sizzle included inline; if your site already uses jQuery, prototype, etc, you could save room by removing it and switching the selector syntax to your js lib.
+This plugin has jQuery included inline; if your site already uses jQuery, you could save room by removing it. Or someone could optimize out the parts that we need (just a selector for all included css and a cross-browser getComputedStyle).
