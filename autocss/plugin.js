@@ -26,7 +26,7 @@ CKEDITOR.plugins.add('autocss', {
             // so that the editor area will 'bleed thru' to the main page
             // locate applicable bg color
             var e = $(editor.element.$).parent();
-            while (e && e.css('background-color') === 'rgba(0, 0, 0, 0)') {
+            while (e && (e.css('background-color') === 'rgba(0, 0, 0, 0)' || e.css('background-color') === 'transparent')) {
                 e = e.parent();
             }
             var bgColor = (e ? e.css('background-color') : this.CONFIG.defaultBackgroundColor);
