@@ -25,11 +25,23 @@ CKEDITOR.plugins.add('autocss', {
             // override any html/body backgrounds from the injected css
             // so that the editor area will 'bleed thru' to the main page
             // locate applicable bg color
-            var e = $(editor.element.$).parent();
-            while (e && (e.css('background-color') === 'rgba(0, 0, 0, 0)' || e.css('background-color') === 'transparent')) {
+            var bgColor = this.CONFIG.defaultBackgroundColor,
+                e       = $(editor.element.$).parent();
+            while (true) {
+                var eBgColor = e.css('background-color');
+                if (eBgColor !== 'rgba(0, 0, 0, 0)' && eBgColor !== 'transparent')
+                {
+                    bgColor = eBgColor;
+                    break;
+                }
+
+                // break out; we don't need to go past <html> or we hit a weird jQuery bug on Document
+                if (e.is('html')) break;
+
+                // traverse up the dom
                 e = e.parent();
+                if (!e) break;
             }
-            var bgColor = (e ? e.css('background-color') : this.CONFIG.defaultBackgroundColor);
             editor.addCss("html,body { background-color: " + bgColor + "; }");
-          }
+    }
 });
