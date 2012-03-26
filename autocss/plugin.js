@@ -42,6 +42,6 @@ CKEDITOR.plugins.add('autocss', {
                 e = e.parent();
                 if (!e) break;
             }
-            editor.addCss("html,body { background-color: " + bgColor + "; }");
+            editor.addCss("html,body { background: " + bgColor + "; }");
     }
 });
